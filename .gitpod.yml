@@ -5,9 +5,9 @@ ports:
 tasks:
   - init: |
       mvn clean install -Pfatjar -f server/pom.xml -Dmaven.test.skip=true
-      yarn --cwd client
-  - command: |
+    command: |
       java -jar server/example/workflow-example/target/workflow-example-1.2.0-SNAPSHOT-glsp.jar com.eclipsesource.glsp.example.workflow.ExampleServerLauncher
-  - command: |
+  - init: |
+      yarn --cwd client
+    command: |
       yarn --cwd client/examples/workflow/browser-app start --hostname=0.0.0.0 ../workspace
-      
